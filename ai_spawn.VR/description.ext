@@ -1,0 +1,3 @@
+class CfgFunctions {
+	#include "ai_spawn\config.hpp"
+};
