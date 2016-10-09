@@ -1,8 +1,5 @@
 # Spawn, Cache, Waypointing: Spawn Module
 
-## Reponsible for maintaining this module:
-* CER10TY
-
 ## Module description
 
 The SCW-S spawn module is responsible for spawning AI as defined by the player. Usually, the module is executed on mission start up through init.sqf, but can be called any time during the mission. 
