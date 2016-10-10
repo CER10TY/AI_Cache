@@ -38,18 +38,17 @@ while {missionNamespace getVariable ["SCW_C_CACHE_GROUPS",true]} do { // While m
 		for "_i" from 0 to (count _cachedGrps - 1) do { // We check against all currently cached groups.
 			_aiGrp = _cachedGrps select _i; // Select ai group to check against
 			{
-				hint str (_x distance (leader _aiGrp));
 				if ((_x distance (leader _aiGrp)) <= _cachingDistance) then { // We check every player unit to see if they're close to the leader of the unit.
 					_groupsInRange pushBackUnique _aiGrp; // If yes, we pushback the group into _groupsInRange ONCE (hence Unique)
 					if (count _groupsInRange > 0) then {
-						[_groupsInRange,"uncache"] call SCW_C_fnc_cacheGroups;
+						[_groupsInRange,"uncache"] call SCW_C_fnc_cacheGroups; // We uncache groups in range.
 					};
 				} else {
-					if ((_x distance (leader _aiGrp)) > _cachingDistance) then {
+					if ((_x distance (leader _aiGrp)) > _cachingDistance) then { // Flip side; if player unit is outside range we cache.
 						if (_aiGrp in _groupsInRange) then {
-							_groupsInRange = _groupsInRange - _aiGrp;
+							_groupsInRange = _groupsInRange - _aiGrp; // If _aiGrp was already in range once we ditch them from _groupsInRange.
 						};
-						[[_aiGrp],"cache"] call SCW_C_fnc_cacheGroups;
+						[[_aiGrp],"cache"] call SCW_C_fnc_cacheGroups; // And cache the _aiGrp.
 					};
 				};
 				false // Since count returns a number, we need to return bool to avoid error. Thanks Kingsley.
@@ -59,4 +58,10 @@ while {missionNamespace getVariable ["SCW_C_CACHE_GROUPS",true]} do { // While m
 	} count _playerGroups; // And for all the player groups.
 	//hint str _groupsInRange;
 	sleep _interval;
+};
+
+// Once SCW_C_CACHE_GROUPS is set to false, while loop exits. At this stage we make sure to un-cache all units.
+if !(missionNamespace getVariable ["SCW_C_CACHE_GROUPS",true]) then {
+	private _aiGrps = call SCW_C_fnc_getAIGroups; 
+	[_aiGrps, "uncache"] call SCW_C_fnc_cacheGroups;
 };

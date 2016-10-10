@@ -8,30 +8,38 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=17;
+		nextID=20;
 	};
 	class Camera
 	{
-		pos[]={1436.3246,32.961445,3876.8096};
-		dir[]={-0.51772588,-0.5390116,0.66457671};
-		up[]={-0.3313258,0.84213978,0.42531109};
-		aside[]={0.7889325,8.4270141e-007,0.61461014};
+		pos[]={1403.8923,32.961445,3492.6006};
+		dir[]={0.0038876731,-0.37560278,0.9268986};
+		up[]={0.0015797549,0.9266358,0.37577385};
+		aside[]={1.000069,1.9257973e-006,-0.0041890992};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
-	"A3_Characters_F"
+	"A3_Characters_F",
+	"A3_Soft_F_MRAP_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=1;
+		items=2;
 		class Item0
 		{
 			className="A3_Characters_F";
 			name="Arma 3 Alpha - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item1
+		{
+			className="A3_Soft_F";
+			name="Arma 3 Alpha - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
@@ -63,37 +71,8 @@ class Mission
 	};
 	class Entities
 	{
-		items=4;
+		items=5;
 		class Item0
-		{
-			dataType="Group";
-			side="West";
-			class Entities
-			{
-				items=1;
-				class Item0
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={1408.9528,5.0014391,3921.1604};
-					};
-					side="West";
-					flags=7;
-					class Attributes
-					{
-						isPlayer=1;
-					};
-					id=1;
-					type="B_Soldier_A_F";
-				};
-			};
-			class Attributes
-			{
-			};
-			id=0;
-		};
-		class Item1
 		{
 			dataType="Group";
 			side="West";
@@ -195,7 +174,7 @@ class Mission
 			};
 			id=7;
 		};
-		class Item2
+		class Item1
 		{
 			dataType="Group";
 			side="West";
@@ -297,7 +276,7 @@ class Mission
 			};
 			id=12;
 		};
-		class Item3
+		class Item2
 		{
 			dataType="Group";
 			side="West";
@@ -398,6 +377,71 @@ class Mission
 			{
 			};
 			id=2;
+		};
+		class Item3
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=1;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={1405.1204,5.0014391,3530.717};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						isPlayer=1;
+					};
+					id=19;
+					type="B_Soldier_F";
+				};
+			};
+			class Attributes
+			{
+			};
+			class CrewLinks
+			{
+				class LinkIDProvider
+				{
+					nextID=1;
+				};
+				class Links
+				{
+					items=1;
+					class Item0
+					{
+						linkID=0;
+						item0=19;
+						item1=18;
+						class CustomData
+						{
+							role=1;
+						};
+					};
+				};
+			};
+			id=17;
+		};
+		class Item4
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={1405.1204,7.2059455,3530.6655};
+			};
+			side="West";
+			flags=6;
+			class Attributes
+			{
+			};
+			id=18;
+			type="B_MRAP_01_F";
 		};
 	};
 };
