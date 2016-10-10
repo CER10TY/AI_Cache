@@ -5,7 +5,7 @@
 	PARAMETERS:
 	0: ARRAY - Array of groups whose units should be cached.
 	1: STRING - Can be "cache" or "uncache" depending on what operation should be performed.
-	2: BOOL (OPT) - True or false if leader of group should be disabled or not. Defaults to true. If leader is not disabled, waypoints etc can still be followed by the group.
+	2: BOOL (OPT) - True or false if leader of group should be disabled or not. Defaults to wyhatever defined in scw-c\macros.hpp. If leader is not disabled, waypoints etc can still be followed by the group.
 
 	RETURNS:
 	0: BOOL - true or false based on if cache was successful or not.
@@ -13,13 +13,14 @@
 
 #include "..\macros.hpp"
 
-params [["_groups", [], [[]]],"_operator",["_disableLeader",true,[true]]];
+params [["_groups", [], [[]]],"_operator",["_disableLeader",false,[true]]];
 
 if (_groups isEqualTo []) exitWith {false}; // If there's no units to cache we exit.
 if (_operator isEqualTo "") exitWith {false}; // If no operation specified we exit.
 if !(isServer) exitWith {false}; // As all xGlobal commands require Server, we have to exit if it isn't executed on server (as then it will have either no or adverse effects).
 
 SCW_C_CACHED_GROUPS = missionNamespace getVariable ["SCW_C_CACHED_GROUPS", []];
+_disableLeader = SCW_C_CACHE_GROUP_LEADER;
 
 {
 	{
