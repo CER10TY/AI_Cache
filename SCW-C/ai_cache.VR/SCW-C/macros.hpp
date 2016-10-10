@@ -1,0 +1,1 @@
+#define SCW_C_CACHE_DISTANCE 600
